@@ -1,6 +1,6 @@
 resource "azurerm_resource_group" "aci-rg" {
   name     = "aci-vsts"
-  location = "westus2"
+  location = "westeurope"
 }
 
 resource "random_id" "randomId" {
@@ -37,8 +37,8 @@ resource "azurerm_container_group" "aci-vsts" {
   os_type             = "linux"
 
   container {
-    name   = "vsts-agent"
-    image  = "lenisha/vsts-agent-infrastructure"
+    name   = "vsts-agent-centos-7"
+    image  = "yldgio/vsts-agent:centos-7"
     cpu    = "0.5"
     memory = "1.5"
     port   = "80"
@@ -62,6 +62,6 @@ resource "azurerm_container_group" "aci-vsts" {
   }
 
   tags {
-    environment = "testing"
+    environment = "develop"
   }
 }
